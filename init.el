@@ -176,6 +176,25 @@
   :ensure t
   :defer t)
 
+(use-package tex
+  :ensure auctex
+  :custom
+  (TeX-engine 'luatex)
+  (TeX-auto-save t)
+  (TeX-parse-self t)
+  (TeX-master nil)
+  (reftex-plug-into-AUCTeX t)
+  (TeX-view-program-selection '((output-pdf "Zathura")))
+  (TeX-source-correlate-method 'synctex)
+  :hook
+  (LaTeX-mode . turn-on-reftex)
+  (LaTeX-mode . TeX-source-correlate-mode)
+  :config
+  (add-to-list 'TeX-view-program-list
+               '("Zathura"
+                 ("zathura %o"
+                  (mode-io-correlate " --synctex-forward %n:0:%b")))))
+
 ;;; Development tools
 
 (use-package eglot
