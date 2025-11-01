@@ -109,8 +109,8 @@
   :ensure t
   :commands deft
   :custom
-  (deft-directory (expand-file-name "~/Notes/deft"))
-  (deft-extensions '("md" "txt")))
+  (deft-directory (expand-file-name "~/notes/deft"))
+  (deft-extensions '("md" "txt" "org")))
 
 ;;; Readability
 
