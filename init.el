@@ -225,6 +225,13 @@
   :ensure t
   :defer t)
 
+(use-package vc-hooks
+  :custom
+  (vc-handled-backends nil)
+  (vc-display-status nil)
+  :init
+  (remove-hook 'find-file-hook #'vc-refresh-state))
+
 (use-package magit
   :ensure t
   :defer t)
