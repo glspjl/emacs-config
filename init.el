@@ -5,6 +5,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq package-archive-priorities '(("gnu". 10) ("nongnu" . 10))) ;; Prefer elpa over melpa
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -225,16 +226,11 @@
   :ensure t
   :defer t)
 
-(use-package vc-hooks
-  :custom
-  (vc-handled-backends nil)
-  (vc-display-status nil)
-  :init
-  (remove-hook 'find-file-hook #'vc-refresh-state))
-
 (use-package magit
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (vc-handled-backends (remove 'Git vc-handled-backends)))
 
 (use-package pyvenv
   :ensure t
